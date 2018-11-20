@@ -250,7 +250,7 @@ int load_config(const char* filename, config_t &cfg)
 		return -1;
 	}
 
-	int nloaded = fscanf_s(cfg_file, "gif_file = %[^;]; alpha = %f; monitor = %d; window_pos_x = %d; window_pos_x = %d; clickable = %d", cfg.gif_filename, MAX_FILENAME_SIZE, &cfg.alpha, &cfg.monitor_idx, &cfg.window_pos_x, &cfg.window_pos_y, &cfg.clickable);
+	int nloaded = fscanf_s(cfg_file, "gif_file = %[^;]; alpha = %f; monitor = %d; window_pos_x = %d; window_pos_y = %d; clickable = %d", cfg.gif_filename, MAX_FILENAME_SIZE, &cfg.alpha, &cfg.monitor_idx, &cfg.window_pos_x, &cfg.window_pos_y, &cfg.clickable);
 	fclose(cfg_file);
 
 	return nloaded == 6 ? 0 : -1;
