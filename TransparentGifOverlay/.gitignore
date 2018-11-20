@@ -1,0 +1,8 @@
+*.VC.VC.opendb
+*.VC.db
+*.vcxproj.user
+
+bin/
+obj/
+.vs/
+
