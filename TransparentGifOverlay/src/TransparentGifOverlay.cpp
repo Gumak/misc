@@ -17,8 +17,8 @@
 #endif
 
 // Global Variables:
-WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
-WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
+TCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
+TCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -311,8 +311,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
 	// Initialize global strings
-	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	LoadStringW(hInstance, IDC_TRANSPARENTGIFOVERLAY, szWindowClass, MAX_LOADSTRING);
+	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+	LoadString(hInstance, IDC_TRANSPARENTGIFOVERLAY, szWindowClass, MAX_LOADSTRING);
 
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TRANSPARENTGIFOVERLAY));
 
@@ -436,7 +436,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
-	WNDCLASSEXW wcex;
+	WNDCLASSEX wcex;
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
 
@@ -452,7 +452,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.lpszClassName = szWindowClass;
 	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
-	return RegisterClassExW(&wcex);
+	return RegisterClassEx(&wcex);
 }
 
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow, int clickable, HWND& hwnd)
@@ -464,7 +464,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow, int clickable, HWND& hwnd)
 	}
 
 	DWORD flags = WS_POPUP;
-	hwnd = CreateWindowExW(flags_ex, szWindowClass, szTitle, flags,
+	hwnd = CreateWindowEx(flags_ex, szWindowClass, szTitle, flags,
 		0, 0, 0, 0, nullptr, nullptr, hInstance, nullptr);
 
 	if (!hwnd)
